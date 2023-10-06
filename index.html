@@ -14,77 +14,83 @@
 
         .container {
             display: flex;
+            flex-direction: column;
+            align-items: center;
             height: 100vh;
         }
 
-        .text-section {
-            width: 50%;
-            overflow-y: scroll;
+        .header {
+            display: flex;
+            justify-content: space-between;
+            width: 90%;
+            padding: 20px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        .image-section {
-            width: 50%;
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
+        .steps-section {
+            display: flex;
+            flex-direction: column;
+            width: 90%;
+            overflow-y: scroll;
+            flex-grow: 1;
         }
 
         .step {
+            display: flex;
+            justify-content: space-between;
             padding: 20px;
             border-bottom: 1px solid #ccc;
+            align-items: center;
         }
 
-        /* Adjust height based on number of steps */
-        .step {
-            height: 25vh;  /* Example: 4 steps would make up the full height */
+        .step-text {
+            width: 60%;
+            padding-right: 20px;
+        }
+
+        .step-image {
+            width: 35%;
+            height: auto;
+            max-height: 150px; /* Adjust based on desired height */
+        }
+
+        /* Navigation links */
+        .nav-links {
+            display: flex;
+            gap: 15px;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <!-- Text Section -->
-    <div class="text-section">
-        <div class="step" data-image-url="path_to_image_1.jpg">
-            Step 1: Description of step 1
+    <!-- Header Section -->
+    <div class="header">
+        <div>Tint3d Logo</div>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">Tech</a>
+            <a href="#">Team</a>
         </div>
-        <div class="step" data-image-url="path_to_image_2.jpg">
-            Step 2: Description of step 2
+    </div>
+    
+    <!-- Steps Section -->
+    <div class="steps-section">
+        <div class="step">
+            <div class="step-text">Step One: Description of step 1</div>
+            <img class="step-image" src="path_to_image_1.jpg" alt="Image for step 1">
         </div>
-        <div class="step" data-image-url="path_to_image_3.jpg">
-            Step 3: Description of step 3
+        <div class="step">
+            <div class="step-text">Step Two: Description of step 2</div>
+            <img class="step-image" src="path_to_image_2.jpg" alt="Image for step 2">
+        </div>
+        <div class="step">
+            <div class="step-text">Step Three: Description of step 3</div>
+            <img class="step-image" src="path_to_image_3.jpg" alt="Image for step 3">
         </div>
         <!-- Add more steps as needed -->
     </div>
-    
-    <!-- Image Section -->
-    <div class="image-section">
-        <!-- Image will be set via JavaScript -->
-    </div>
 </div>
-
-<script>
-    // Vanilla JavaScript
-    const textSection = document.querySelector('.text-section');
-    const imageSection = document.querySelector('.image-section');
-    
-    textSection.addEventListener('scroll', function() {
-        const steps = document.querySelectorAll('.step');
-        let imageToDisplay = '';
-        // Check which step is currently in view
-        for(const step of steps) {
-            const rect = step.getBoundingClientRect();
-            if (rect.top < window.innerHeight && rect.bottom > 0) {
-                // The step is in view
-                imageToDisplay = step.getAttribute('data-image-url');
-                break;
-            }
-        }
-        if (imageToDisplay) {
-            imageSection.style.backgroundImage = `url(${imageToDisplay})`;
-        }
-    });
-</script>
 
 </body>
 </html>
